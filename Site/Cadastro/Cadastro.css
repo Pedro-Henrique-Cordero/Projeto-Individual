@@ -1,0 +1,38 @@
+body {
+    margin: 0;
+    padding: 0;
+    background-image: url('ARK.jpg');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: black;
+    height: 100vh;
+    font-family: Arial, sans-serif;
+  }
+
+  .Caixa {
+    background-color: rgba(30, 30, 30, 0.9); 
+    box-shadow: 0 0 20px #00bfff55; 
+    width: 300px;
+    padding: 20px;
+    border-radius: 10px;
+    margin: auto;
+    margin-top: 100px;
+    text-align: center;
+  }
+
+  input {
+    width: 90%;
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 5px;
+  }
+
+  button {
+background-color:#555;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 5px;
+cursor: pointer;
+}

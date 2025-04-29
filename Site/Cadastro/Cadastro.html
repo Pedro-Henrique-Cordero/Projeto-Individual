@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="Cadastro.css">
+</head>
+<body>
+  <div class="Caixa">
+    <h2>Cadastro</h2>
+    <input id="Email" placeholder="Digite seu e-mail"><br>
+    <input id="Senha" placeholder="Crie uma senha"><br>
+    <input id="SenhaN" placeholder="Confirme a senha"><br>
+    <button onclick="Cadastro()">Cadastrar</button>    
+    <a href="../Login/login.html">
+      <button type="button">Logar</button>
+    </a>
+  </div>
+</body>
+</html>
+  <script>
+    var DEmail = []
+    var Dsenha = []
+    function Cadastro() {
+      if (Email.value === '' || Senha.value === '' || SenhaN.value === '') {
+        alert('Preencha todos os campos');
+      } else if ( !Email.value.endsWith('@gmail.com')) {
+        alert('O E-mail só é válido com o domínio @gmail.com');
+      } else if (Senha.value !== SenhaN.value) {
+        alert('As senhas devem ser iguais');
+      } else {
+        alert('Cadastro feito com Sucesso');
+        DEmail.push[Email.value]
+        Dsenha.push[Senha.value] 
+      }
+    }
+  </script>
