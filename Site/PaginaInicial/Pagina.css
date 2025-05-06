@@ -1,0 +1,56 @@
+body {
+    background-image: url('ARKSITE@.jpg');
+    background-size: cover;
+    background-position: center;
+  }
+
+.Borda {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+    padding: 40px;
+    max-width: 1200px; 
+    margin: 0 auto;       
+  }  
+
+.Caixa1 {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    flex: 1; 
+    padding: 20px;
+    border-radius: 10px;
+}
+.Caixa2 {
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;  
+    background-image: url('ARK.jpg');
+    background-size: cover;
+    background-position: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    flex: 1;
+    padding: 20px;
+    border-radius: 10px;
+  }
+  
+.Caixa3 {
+    
+    display: flex;
+    flex-direction: column-reverse;
+    align-items: center;
+    background-color: rgba(255, 255, 255, 0.9);
+    flex: 1; 
+    padding: 20px;
+    border-radius: 10px;
+}
+
+  button {
+    background-color:#555;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+  }
