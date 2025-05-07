@@ -1,6 +1,4 @@
 body {
-    margin: 0;
-    padding: 0;
     background-image: url('ARK.jpg');
     background-size: contain;
     background-repeat: no-repeat;
@@ -8,6 +6,7 @@ body {
     background-color: black;
     height: 100vh;
     font-family: Arial, sans-serif;
+    overflow: hidden;
   }
 
   .Caixa {

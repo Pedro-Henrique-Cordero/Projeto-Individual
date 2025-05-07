@@ -3,14 +3,13 @@ body {
     background-color: rgba(0, 0, 0, 0.9);
     /* background-image: url(''); */
     background-size: cover;
-    background-position: center;
+    background-position: center; 
   }
-
+ 
 .Borda {
     display: flex;
     justify-content: space-between;
     gap: 20px;
-    padding: 40px;
     max-width: 1200px; 
     margin: 0 auto;       
   }  
