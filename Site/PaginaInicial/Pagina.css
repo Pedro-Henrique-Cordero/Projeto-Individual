@@ -1,5 +1,4 @@
-body {
-    
+body { 
     background-color: rgba(0, 0, 0, 0.9);
     /* background-image: url(''); */
     background-size: cover;
@@ -78,5 +77,4 @@ body {
     border: none;
     padding: 10px 20px;
     border-radius: 10px;
-    cursor: pointer;
   }
