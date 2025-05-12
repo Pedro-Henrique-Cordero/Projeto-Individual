@@ -46,7 +46,7 @@ body {
     display: flex;
     flex-direction: column-reverse;
     align-items: center;  
-    background-image: url('ARK.jpg');
+    background-image: url('ARKLogo.jpg');
     background-size: cover;
     background-position: center;
     flex: 1;
