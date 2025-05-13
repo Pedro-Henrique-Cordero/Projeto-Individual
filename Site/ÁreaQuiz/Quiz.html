@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Progresso Ark</title>
+    <link rel="stylesheet" href="Quiz.css">
+</head>
+<body>
+    <h1>Progresso do Ark</h1>
+<div class="AreaP">
+    <div class="Perguntas"> Quantas horas por semana você joga?</div>
+    <input type="number" id="horas"><br>
+
+    <div class="Perguntas">Modo de jogo preferido:</div>
+    <select id="modo">
+      <option value="pvp">PvP</option>
+      <option value="pve">PvE</option>
+    </select><br>
+
+    <div class="Perguntas">Mapa favorito:</div>
+    <select id="mapa" name="mapa">
+      <option value="island">The Island</option>
+      <option value="Scorched">Scorched</option>
+      <option value="Aberration">Aberration</option>
+      <option value="extinction">Extinction</option>
+      <option value="Gen1">Genesis 1</option>
+      <option value="Gen2">Genesis 2</option>
+      <option value="Outros">Outros</option>
+    </select><br>
+
+    <div class="Perguntas">Qual dino você mais doma?</div>
+    <input id="dinos"><br>
+
+    <div class="Perguntas">Principal recurso que você farma:</div>
+    <input id="recursos"><br><br>
+    <button onclick="Responder()">Responder Progresso</button>
+</div>
+
+<a href="../PaginaInicial/Pagina.html"><button>Retornar</button></a>
+</body>
+</html>
+<script>
+    function Responder() {
+        if (recursos.value == "" || dinos.value == "" || horas.value == "") {
+            alert('Responda todos os campos')
+        } else {
+            alert('Respondido com sucesso')
+            window.location.href ='../PaginaInicial/Pagina.html'
+        }
+    }
+</script>

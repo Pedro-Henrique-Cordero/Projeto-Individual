@@ -1,27 +1,53 @@
+body{
+    background-color: black;
+}
+
 .Ark {
 background-image: url('FotosArk/Ark.png');
+height: 660px;
+background-size: cover;
 }
 
 .Scorched {
 background-image: url('FotosArk/Scorched.png');
+height: 720px;
+background-size: cover;
 }
 
 .Aberration {
 background-image: url('FotosArk/Aberration.png');
+height: 675px;
+background-size: cover;
 } 
 
 .Extinction {
 background-image: url('FotosArk/Extinction.png');
+height: 780px;
+background-size: cover;
 }
 
 .LostColony {
 background-image: url('FotosArk/LostColony.png');
+height: 750px;
+background-size: cover;
 }
 
 .Gen1 {
 background-image: url('FotosArk/Gen1.png');
+height: 725px;
+background-size: cover;
 }
 
 .Gen2 {
 background-image: url('FotosArk/Gen2.png');
+height: 725px;
+background-size: cover;
+}
+
+.saida {
+display: flex;
+flex-direction: row-reverse;
+}
+button{
+cursor: pointer;
 }
