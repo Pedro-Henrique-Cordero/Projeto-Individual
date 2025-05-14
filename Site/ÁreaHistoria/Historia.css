@@ -2,6 +2,17 @@ body{
     background-color: black;
 }
 
+h1 {
+text-align: center;
+text-shadow: 2px 2px 5px black;
+}
+
+h3 {
+text-align: center;
+color: white;
+text-shadow: 5px 5px 10px black;
+}
+
 .Ark {
 background-image: url('FotosArk/Ark.png');
 height: 660px;
@@ -46,8 +57,10 @@ background-size: cover;
 
 .saida {
 display: flex;
-flex-direction: row-reverse;
+flex-direction: row;
+height: 75px;
 }
+
 button{
 cursor: pointer;
 }
