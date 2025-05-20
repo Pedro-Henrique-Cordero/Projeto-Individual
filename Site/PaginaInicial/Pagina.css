@@ -58,7 +58,7 @@ border-radius: 60px;
 display: flex;
 flex-direction: column-reverse;
 align-items: center;
-background-image: url('ImQuiz.png');
+background-image: url('');
 background-size: contain;
 background-position: center;
 flex: 1; 
