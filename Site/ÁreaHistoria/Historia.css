@@ -17,7 +17,6 @@ text-shadow: 2px 2px 4px black;
 
 .navegacao {
 position: fixed;
-top: 0;
 width: 100%;
 background-color: black;
 padding: 10px;
@@ -40,6 +39,7 @@ color: white;
 }
 
 .Caixa {
+background-color: rgba(0, 0, 0, 0.5);
 padding: 30px;
 max-width: 1000px;
 margin: auto;
@@ -68,7 +68,7 @@ height: 487px;
 
 .Extinction {
 background-image: url('FotosArk/Extinction.png');
-height: 487px;
+height: 570px;
 }
 
 .Gen1 {
@@ -78,6 +78,11 @@ height: 487px;
 
 .Gen2 {
 background-image: url('FotosArk/Gen2.png');
+height: 570px;
+}
+
+.Ark2 {
+background-image: url('FotosArk/Ark2.png');
 height: 487px;
 }
 
@@ -93,4 +98,8 @@ font-size: 16px;
 border-radius: 8px;
 box-shadow: 2px 2px 10px rgba(0, 0, 0, 0.5);
 cursor: pointer;
+}
+html {
+    scroll-behavior: smooth;
+
 }
