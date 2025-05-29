@@ -10,21 +10,22 @@
   <div class="Caixa">
     <h2>Login</h2>
     <input id="Email" placeholder="Digite seu e-mail"><br>
-    <input id="Nome" placeholder="Digite seu nome"><br>
     <input type="password" id="Senha" placeholder="Digite sua senha"><br>
     <a>
-      <button type="button" onclick="Validar()">Validar</button>
+      <button type="button" onclick="entrar()">Entrar</button>
     </a> <br>
     <div id="div"></div>
   </div>
 </body>
 </html>
   <script>
-    function Validar() {
-      var email = Email.value;
-      var senha = Senha.value;
-      var nome = Nome.value;
-        if (email == "" || senha == "" || nome == "") {
+    function entrar() {
+        aguardar();
+
+        var email = email.value;
+        var senha = senha.value;
+
+        if (email == "" || senha == "") {
             cardErro.style.display = "block"
             mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
             finalizarAguardar();
@@ -36,7 +37,6 @@
 
         console.log("FORM LOGIN: ", email);
         console.log("FORM SENHA: ", senha);
-        console.log("FORM Nome: ", nome);
 
         fetch("/usuarios/autenticar", {
             method: "POST",
@@ -45,8 +45,7 @@
             },
             body: JSON.stringify({
                 emailServer: email,
-                senhaServer: senha,
-                nomeServer: nome
+                senhaServer: senha
             })
         }).then(function (resposta) {
             console.log("ESTOU NO THEN DO entrar()!")
@@ -58,8 +57,8 @@
                     console.log(json);
                     console.log(JSON.stringify(json));
                     sessionStorage.EMAIL_USUARIO = json.email;
-                    sessionStorage.SENHA_USUARIO = json.senha;
                     sessionStorage.NOME_USUARIO = json.nome;
+                    sessionStorage.ID_USUARIO = json.id;
                     setTimeout(function () {
                         window.location = "Pagina.html";
                     }, 1000); // apenas para exibir o loading
@@ -86,5 +85,4 @@
     function sumirMensagem() {
         cardErro.style.display = "none"
     }
-    
   </script>

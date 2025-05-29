@@ -9,7 +9,13 @@
 <body>
 </body>
 <div class="CaixaQuiz">
-    <h1>Quiz de Sobrevivência</h1>
+  <h1>Quiz de Sobrevivência</h1>
+  <div id="inicioQuiz">
+  <p>Você está prestes a iniciar o <strong>Teste de Sobrevivência</strong> das ARKs.<br>
+  Apenas os mais atentos aos segredos do Elemento, dos Overseers e das simulações vão conseguir chegar ao fim!</p>
+  <button onclick="iniciarQuiz()">Começar Missão</button>
+</div>
+    
     <div id="PgtQuiz">
       <!-- Aqui entra a pergunta dinamicamente -->
     </div>
@@ -189,6 +195,8 @@ if (pontuacao == 0) {
     mostrarPergunta();
   }
 
+  function iniciarQuiz() {
+  document.getElementById("inicioQuiz").style.display = "none";
   mostrarPergunta();
-
+}
 </script>
