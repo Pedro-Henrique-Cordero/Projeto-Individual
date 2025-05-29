@@ -1,0 +1,78 @@
+body { 
+background-image: url('../FotosArk/Imfundo.png');
+background-size: cover;
+background-repeat: no-repeat;
+background-position: center; 
+overflow: hidden;
+}
+ 
+.Borda {
+display: flex;
+flex-direction: row;
+justify-content: space-between;
+gap: 20px;
+max-width: 1200px; 
+margin: 0 auto; 
+}
+
+.Topo {
+display: flex;
+justify-content: space-between;
+align-items: center;
+max-width: 1000px;
+margin: 1px auto;
+padding: 10px;
+}
+
+.botao {
+display: flex;
+gap: 10px;
+}
+
+
+.Caixa1 {
+display: flex;
+flex-direction: column-reverse;
+align-items: center;
+background-image: url('');
+background-size: cover;
+background-position: center;
+flex: 1; 
+height: 450px;
+padding: 40px;
+border-radius: 40px;
+}
+.Caixa2 {
+display: flex;
+flex-direction: column-reverse;
+align-items: center;
+background-image: url('../FotosArk/imHistoria.jpeg');
+background-size: cover;
+background-position: center;
+flex: 1;
+height: 450px;
+padding: 40px;
+border-radius: 40px;
+}
+
+.Caixa3 {
+display: flex;
+flex-direction: column-reverse;
+align-items: center;
+background-image: url('../FotosArk/');
+background-size: cover;
+background-position: center;
+flex: 1; 
+height: 450px;
+padding: 40px;
+border-radius: 40px;
+}
+
+button {
+background-color:#555;
+color: white;
+border: none;
+padding: 10px 20px;
+border-radius: 10px;
+cursor: pointer;
+}

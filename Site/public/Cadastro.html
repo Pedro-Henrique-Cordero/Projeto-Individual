@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Cadastro</title>
+  <link rel="stylesheet" href="./Css/Cadastro.css">
+</head>
+<body>
+  <div class="Caixa">
+    <h2>Cadastro</h2>
+    <input id="Nome" placeholder="Coloque seu Nome">
+    <input id="Email" placeholder="Digite seu e-mail"><br>
+    <input type="password" id="Senha" placeholder="Crie uma senha"><br>
+    <input type="password" id="SenhaN" placeholder="Confirme a senha"><br>
+    <button onclick="Cadastro()">Cadastrar</button>    
+  </div>
+</body>
+</html>
+  <script>
+    function Cadastro() {
+    var nome = Nome.value;
+    var email = Email.value;
+    var senha = Senha.value;
+    var senhan = SenhaN.value;
+      if (email == "" || senha == "" || senhan == "" || nome == "") {
+        alert('Preencha todos os campos');
+      } else if ( !Email.value.endsWith('@gmail.com')) {
+        alert('O E-mail só é válido com o domínio @gmail.com');
+      } else if (senha !== senhan) {
+        alert('As senhas devem ser iguais');
+      } else {
+        fetch("/usuarios/cadastrar", {
+      method: "POST",
+      headers: { "Content-Type": "application/json",
+      },body: JSON.stringify({
+        nomeServer: nome,
+        emailServer: email,
+        senhanServer: senhan,
+      })});
+        alert('Cadastro feito com Sucesso');
+        window.location.href = 'Login.html'
+      }
+
+      
+    }
+  </script>

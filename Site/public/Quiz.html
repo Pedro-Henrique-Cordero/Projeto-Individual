@@ -1,0 +1,194 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quiz Ark</title>
+    <link rel="stylesheet" href="./Css/Quiz.css">
+</head>
+<body>
+</body>
+<div class="CaixaQuiz">
+    <h1>Quiz de Sobrevivência</h1>
+    <div id="PgtQuiz">
+      <!-- Aqui entra a pergunta dinamicamente -->
+    </div>
+    <p id="mensagemFinal"></p>
+  </div>
+  <a href="index.html"><button class="botao">Retornar</button></a>
+</body>
+</html>
+<script>
+  var PgtAtual = 0;
+  var pontuacao = 0;
+  var perguntas = [
+    {
+      texto: "1. Qual é a verdadeira função dos Overseers nas ARKs?",
+      alternativas: ["Controlar o clima e os biomas das ARKs", "Monitorar e julgar os sobreviventes nos testes de ascensão",
+       "Proteger os Homo deus da ameaça do Element", "Criar criaturas híbridas para as simulações"],
+      correta: "B"
+    },
+    {
+      texto: "2. Por que Scorched Earth é considerada uma ARK mais severa?",
+      alternativas: ["Porque o clima muda constantemente entre neve e calor", "Porque os Homo deus a usam como prisão", 
+      "Porque Rockwell já controlava essa ARK desde o início", "Devido à escassez extrema de recursos e falhas no sistema"],
+      correta: "D"
+    },
+    {
+      texto: "3.Qual foi o papel de Diana e Mei-Yin em Extinction?",
+      alternativas:["Elas ajudaram a derrotar o Overseer de Aberration", "Ajudaram Helena a escapar da simulação de Genesis 1",
+      "Encontraram a origem da Entidade Corrompida e lutaram contra ela", "Criaram o plano para construir a Colony Ship"],
+      correta: "C"
+    },
+    {
+      texto: "4.O que diferencia Genesis Parte 1 das ARKs anteriores?",
+      alternativas: ["É uma simulação digital, não um ambiente físico", "Ela acontece em uma ARK com gravidade zero",
+      "Foi criada por Rockwell como uma armadilha", "Não possui Overseers, apenas humanos"],
+      correta: "A"
+    },
+    {
+      texto: "5.O que simboliza a chegada do jogador em Ark 2?",
+      alternativas: ["A volta da civilização humana às suas origens tecnológicas", "Um novo ciclo de testes planejado pelos Homo deus",
+      "O fim das simulações e o início de um futuro real e orgânico", "A ascensão do jogador como novo Overseer"],
+      correta: "C"
+    },
+    {
+      texto: "6. Quem foi responsável por corromper Rockwell e levá-lo à insanidade?",
+      alternativas: ["A radiação de Aberration", "O contato com o Elemento", "Um experimento fracassado dos Homo deus", "A perda de sua filha"],
+      correta: "B"
+    },
+    {
+      texto: "7. Qual era a função original do Colony Ship em Genesis Parte 2?",
+      alternativas: ["Testar humanos geneticamente modificados", "Fugir da Terra e levar humanos a um novo planeta", 
+      "Conter o Elemento corrompido em segurança", "Criar uma nova raça de Homo deus"],
+      correta: "B"
+    },
+    {
+      texto: "8. O que faz de Helena uma personagem única entre os sobreviventes?",
+      alternativas: ["Ela se transforma em Homo deus após Extinction", "Ela é a única a ascender em todas as ARKs", 
+      "Ela fundou a tribo dos Caminhantes", "Ela criou os simulacros como HLN-A"],
+      correta: "A"
+    },
+    {
+      texto: "9. Por que Aberration está tão instável e perigosa?",
+      alternativas: ["Seu núcleo foi danificado por um experimento falho", "Foi sabotada por sobreviventes em rebelião", 
+      "Ela foi atingida por um meteoro", "Foi corrompida pelo Overseer local"],
+      correta: "A"
+    },
+    {
+      texto: "10. O que representa a derrota final de Rockwell em Genesis Parte 2?",
+      alternativas: ["O colapso das ARKs", "A fusão entre humanos e IA", 
+      "O início da Era dos Homo deus", "A libertação do controle do Elemento"],
+      correta: "D"
+    }
+];
+
+  function mostrarPergunta() {
+    PgtQuiz.innerHTML = "";
+    if (PgtAtual < perguntas.length) {
+      var q = perguntas[PgtAtual];
+
+      var html = "<p>" + q.texto + "</p>";
+
+      for (var i = 0; i < q.alternativas.length; i++) {
+        var letra = String.fromCharCode(65 + i);
+        html += "<label><input type='radio' name='resposta' value='" + letra + "'> " + q.alternativas[i] + "</label><br>";
+      }
+
+      html += "<button onclick='verificarResposta()'>Próxima</button>";
+      PgtQuiz.innerHTML = html;
+    } else {
+      finalizarQuiz();
+    }
+  }
+
+  function verificarResposta() {
+    var opcoes = document.getElementsByName("resposta");
+    var respostaUsuario = "";
+
+    for (var i = 0; i < opcoes.length; i++) {
+      if (opcoes[i].checked) {
+        respostaUsuario = opcoes[i].value;
+      }
+    }
+
+    if (respostaUsuario === "") {
+      alert("Escolha uma alternativa antes de continuar!");
+      return;
+    }
+
+    if (respostaUsuario === perguntas[PgtAtual].correta) {
+     pontuacao++;
+      let frase = ((Math.random() * 4) + 1).toFixed();
+     if (frase == 1) {
+      alert('Você tá brilhando mais que um Obelisco! Acertou em cheio!')
+     } else if (frase == 2) {
+      alert('Essa resposta iluminou mais que um Glowtail em caverna escura!')
+     } else if (frase == 3) {
+      alert('Você dominou essa pergunta igual os sobreviventes dominaram as Arks!')
+     } else if (frase == 4) {
+      alert('Respondeu tão bem quanto a Helena decifrando os segredos das ARKs!')
+      } else {
+      alert('Mandou muito! Em Extinction, você já estaria lado a lado com a Mei-Yin protegendo a Terra!')
+      }
+    } else {
+      let frase = ((Math.random() * 4) + 1).toFixed();
+     if (frase == 1) {
+      alert('Essa resposta foi enterrada em Scorched Earth. Bora desenterrar o conhecimento!')
+     } else if (frase == 2) {
+      alert('Essa resposta foi mais errada que tentar domar um Giga com frutinha!')
+     } else if (frase == 3) {
+      alert('Resposta errada! Te jogaram no vazio de Genesis sem traje espacial!')
+     } else if (frase == 4) {
+      alert('Errou! Essa foi tipo tentar explorar a Red Zone do Aberration sem traje de radiação…')
+      } else {
+      alert('Errou essa... mas fica tranquilo, nem todo mundo sobrevive à primeira noite em The Island.')
+      }
+    }
+
+    PgtAtual++;
+    mostrarPergunta();
+  }
+
+
+  function finalizarQuiz() {
+    var msg = "";
+if (pontuacao == 0) {
+  msg = "Você mal abriu os olhos na praia e já virou almoço de um Dilo! Ainda dá pra aprender, sobrevivente. Respawn e tenta de novo!";
+} else if (pontuacao == 1) {
+  msg = "Pegou um punhado de berries, comeu sem ler a descrição, e agora tá grogue! Mas faz parte... o importante é que você deu o primeiro passo!";
+} else if (pontuacao == 2) {
+  msg = "Você domou um Dodo e construiu uma fogueirinha. Tá começando a se virar! Quem sabe logo não sobe pro próximo tier de sobrevivência?";
+} else if (pontuacao == 3) {
+  msg = "Já tem base de palha, um parasauro fiel e sabe que cocô de dinossauro tem função. Sua jornada de evolução começou pra valer!";
+} else if (pontuacao == 4) {
+  msg = "Agora sim! Você construiu uma base de pedra, domou um raptor e já aprendeu que ir pra selva sem cama é suicídio. Evoluindo com estilo!";
+} else if (pontuacao == 5) {
+  msg = "Você sobreviveu a uma caverna e saiu vivo! Com armadura de metal e crossbow em punho, tá pronto pra encarar até Alpha raptor!";
+} else if (pontuacao == 6) {
+  msg = "Domou seu primeiro Rex, instalou gerador elétrico e já tá brincando de criador de dino. Agora é olhar pros bosses com confiança!";
+} else if (pontuacao == 7) {
+  msg = "Você derrotou seu primeiro Overseer! Agora é um sobrevivente ascendido — já pode encarar a radiação de Aberration sem tremer!";
+} else if (pontuacao == 8) {
+  msg = "Comandando Megamek em Extinction, você enfrentou a origem do Elemento. Agora seu conhecimento rivaliza o dos próprios Exploradores!";
+} else if (pontuacao == 9) {
+  msg = "Você transcendeu! Homo deus feelings. Entende a história, domina os mapas, e pode explicar o ciclo das ARKs melhor que a HLN-A!";
+} else {
+  msg = "LENDÁRIO. Você sobreviveu a tudo, do spawn pelado até o espaço sideral. Domou os Titas, derrotou Rockwell e conquistou o universo.";
+}
+
+    var resultado = "Você descobriu " + (pontuacao/perguntas.length) * 100 + "% do mapa, descobrindo <strong>" + pontuacao + "</strong> de " + perguntas.length + " biomas.<br>" + msg;
+    PgtQuiz.innerHTML = "<button onclick='reiniciarQuiz()'>Tentar novamente</button> <br> <a href='../public/Pagina.html'><button>Finalizar Quiz</button>";
+    mensagemFinal.innerHTML = resultado;
+  }
+
+  function reiniciarQuiz() {
+    PgtAtual = 0;
+    pontuacao = 0;
+    mensagemFinal.innerHTML = "";
+    mostrarPergunta();
+  }
+
+  mostrarPergunta();
+
+</script>

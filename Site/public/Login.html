@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Login</title>
+  <link rel="stylesheet" href="./Css/Login.css">
+</head>
+<body>
+  <div class="Caixa">
+    <h2>Login</h2>
+    <input id="Email" placeholder="Digite seu e-mail"><br>
+    <input id="Nome" placeholder="Digite seu nome"><br>
+    <input type="password" id="Senha" placeholder="Digite sua senha"><br>
+    <a>
+      <button type="button" onclick="Validar()">Validar</button>
+    </a> <br>
+    <div id="div"></div>
+  </div>
+</body>
+</html>
+  <script>
+    function Validar() {
+      var email = Email.value;
+      var senha = Senha.value;
+      var nome = Nome.value;
+        if (email == "" || senha == "" || nome == "") {
+            cardErro.style.display = "block"
+            mensagem_erro.innerHTML = "(Mensagem de erro para todos os campos em branco)";
+            finalizarAguardar();
+            return false;
+        }
+        else {
+            setInterval(sumirMensagem, 5000)
+        }
+
+        console.log("FORM LOGIN: ", email);
+        console.log("FORM SENHA: ", senha);
+        console.log("FORM Nome: ", nome);
+
+        fetch("/usuarios/autenticar", {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify({
+                emailServer: email,
+                senhaServer: senha,
+                nomeServer: nome
+            })
+        }).then(function (resposta) {
+            console.log("ESTOU NO THEN DO entrar()!")
+
+            if (resposta.ok) {
+                console.log(resposta);
+
+                resposta.json().then(json => {
+                    console.log(json);
+                    console.log(JSON.stringify(json));
+                    sessionStorage.EMAIL_USUARIO = json.email;
+                    sessionStorage.SENHA_USUARIO = json.senha;
+                    sessionStorage.NOME_USUARIO = json.nome;
+                    setTimeout(function () {
+                        window.location = "Pagina.html";
+                    }, 1000); // apenas para exibir o loading
+
+                });
+
+            } else {
+
+                console.log("Houve um erro ao tentar realizar o login!");
+
+                resposta.text().then(texto => {
+                    console.error(texto);
+                    finalizarAguardar(texto);
+                });
+            }
+
+        }).catch(function (erro) {
+            console.log(erro);
+        })
+
+        return false;
+    }
+
+    function sumirMensagem() {
+        cardErro.style.display = "none"
+    }
+    
+  </script>
