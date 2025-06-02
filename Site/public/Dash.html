@@ -3,10 +3,41 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Relatorio de Sobrevivente</title>
+    <link rel="stylesheet" href="./Css/Dash.css">
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
 </head>
 <body onload="exibir()">
-    
+  <div class="BarraL">
+  <h2>Navegação</h2>
+  <a href="index.html"><button>Início</button></a><br><br>
+  <a href="Quiz.html"><button>Jogar Quiz</button></a>
+</div>
+  <div class="dashboard">
+    <h2>Bem-vindo, Sobrevivente!</h2>
+    <div class="KPIs">
+      <div class="CaixaKpi">
+        <h5>Média de Acertos</h5>
+      </div>
+      <div class="CaixaKpi">
+        <h5>Quizzes Jogados</h5>
+      </div>
+      <div class="CaixaKpi">
+        <h5>Melhor Pontuação</h5>
+      </div>
+      <div class="CaixaKpi">
+        <h5>Última Tentativa</h5>
+      </div>
+    </div>
+
+    <div class="Graficos">
+      <canvas id="graficoBarras"></canvas>
+      <canvas id="graficoPizza"></canvas>
+    </div>
+
+
+  <script src="dashboard.js"></script>
+
 </body>
 </html>
 <script>

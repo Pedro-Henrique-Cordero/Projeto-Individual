@@ -23,8 +23,17 @@
 <a href="Historia.html"><button>Historia</button></a>
 </div>
 <div class="Caixa3">
-<a href="Quiz.html"><button>Quiz</button></a>
+<a href="Quiz.html"><button onclick="sessão()">Quiz</button></a>
 </div>
 </div>
 </body>
 </html>
+<script>
+const FkUsuario = sessionStorage.getItem('ID_USUARIO');
+function sessão() {
+  resposta.json().then(json => {
+sessionStorage.setItem('ID_USUARIO', json.FkUsuario);
+
+  })
+}
+</script>

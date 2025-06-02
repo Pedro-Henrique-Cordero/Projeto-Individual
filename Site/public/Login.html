@@ -20,10 +20,9 @@
 </html>
   <script>
     function entrar() {
-        aguardar();
 
-        var email = email.value;
-        var senha = senha.value;
+        var email = Email.value;
+        var senha = Senha.value;
 
         if (email == "" || senha == "") {
             cardErro.style.display = "block"
@@ -60,7 +59,9 @@
                     sessionStorage.NOME_USUARIO = json.nome;
                     sessionStorage.ID_USUARIO = json.id;
                     setTimeout(function () {
-                        window.location = "Pagina.html";
+                        console.log("Chegamos no redirecionamento.")
+                        alert('Login Realizado com sucesso')
+                         window.location = "index.html";
                     }, 1000); // apenas para exibir o loading
 
                 });
@@ -70,8 +71,7 @@
                 console.log("Houve um erro ao tentar realizar o login!");
 
                 resposta.text().then(texto => {
-                    console.error(texto);
-                    finalizarAguardar(texto);
+                   alert(texto);
                 });
             }
 

@@ -1,5 +1,5 @@
 body { 
-background-image: url('../FotosArk/Imfundo.png');
+background-image: url('../FotosArk/Fundo.jpg');
 background-size: cover;
 background-repeat: no-repeat;
 background-position: center; 
@@ -34,11 +34,11 @@ gap: 10px;
 display: flex;
 flex-direction: column-reverse;
 align-items: center;
-background-image: url('');
+background-image: url('../FotosArk/IndexDash.png');
 background-size: cover;
 background-position: center;
 flex: 1; 
-height: 450px;
+height: 425px;
 padding: 40px;
 border-radius: 40px;
 }
@@ -46,11 +46,11 @@ border-radius: 40px;
 display: flex;
 flex-direction: column-reverse;
 align-items: center;
-background-image: url('../FotosArk/imHistoria.jpeg');
+background-image: url('../FotosArk/IndexHistoria.jpg');
 background-size: cover;
 background-position: center;
 flex: 1;
-height: 450px;
+height: 425px;
 padding: 40px;
 border-radius: 40px;
 }
@@ -59,11 +59,11 @@ border-radius: 40px;
 display: flex;
 flex-direction: column-reverse;
 align-items: center;
-background-image: url('../FotosArk/');
+background-image: url('../FotosArk/IndexQuiz.png');
 background-size: cover;
 background-position: center;
 flex: 1; 
-height: 450px;
+height: 425px;
 padding: 40px;
 border-radius: 40px;
 }

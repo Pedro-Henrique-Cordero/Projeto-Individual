@@ -158,7 +158,7 @@
 
 
   function finalizarQuiz() {
-    var msg = "";
+  var msg = "";
 if (pontuacao == 0) {
   msg = "Você mal abriu os olhos na praia e já virou almoço de um Dilo! Ainda dá pra aprender, sobrevivente. Respawn e tenta de novo!";
 } else if (pontuacao == 1) {
@@ -184,8 +184,29 @@ if (pontuacao == 0) {
 }
 
     var resultado = "Você descobriu " + (pontuacao/perguntas.length) * 100 + "% do mapa, descobrindo <strong>" + pontuacao + "</strong> de " + perguntas.length + " biomas.<br>" + msg;
-    PgtQuiz.innerHTML = "<button onclick='reiniciarQuiz()'>Tentar novamente</button> <br> <a href='../public/Pagina.html'><button>Finalizar Quiz</button>";
+    PgtQuiz.innerHTML = "<button onclick='reiniciarQuiz()'>Tentar novamente</button> <br> <a href='index.html'><button>Finalizar Quiz</button>";
     mensagemFinal.innerHTML = resultado;
+    
+    fetch("/quiz/registrarQuiz", {
+      method: "POST",
+      headers: {
+          "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        FkUsuario: sessionStorage.ID_USUARIO,
+        pontuacao: pontuacao
+        })
+  })
+      .then(resposta => {
+          if (resposta.ok) {
+              console.log("Resultados do quiz registrados com sucesso!");
+          } else {
+              console.error("Erro ao registrar resultados do quiz");
+          }
+      })
+      .catch(erro => {
+          console.error("Erro na requisição:", erro);
+      });
   }
 
   function reiniciarQuiz() {
@@ -199,4 +220,6 @@ if (pontuacao == 0) {
   document.getElementById("inicioQuiz").style.display = "none";
   mostrarPergunta();
 }
+
+
 </script>
