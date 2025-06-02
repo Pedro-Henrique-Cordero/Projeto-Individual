@@ -20,7 +20,76 @@ function registrarQuiz(fkusuario, Pontuacao) {
     return database.executar(instrucao);
 }
 
+function buscarQtdTentativas(idUsuario) {
+    var instrucao = `
+        SELECT COUNT(*) AS tentativas 
+        FROM Resposta 
+        WHERE FkUsuario = ${idUsuario};
+    `;
+    return database.executar(instrucao);
+}
+
+function buscarMaiorPontuacao(idUsuario) {
+    var instrucao = `
+        SELECT MAX(QtdAcertos) AS maiorPontuacao 
+        FROM Resposta 
+        WHERE FkUsuario = ${idUsuario};
+    `;
+    return database.executar(instrucao);
+}
+
+function obterTentativasEPontuacao(idUsuario) {
+  const instrucao = `
+    SELECT 
+      COUNT(*) AS tentativas,
+      MAX(QtdAcertos) AS maiorPontuacao
+    FROM Resposta
+    WHERE FkUsuario = ${idUsuario};
+  `;
+  return database.executar(instrucao);
+}
+
+function buscarUltimaTentativa(idUsuario) {
+    var instrucao = `
+        SELECT DtResposta AS ultimaTentativa 
+        FROM Resposta 
+        WHERE FkUsuario = ${idUsuario};
+    `;
+    return database.executar(instrucao);
+}
+
+function obterAcertosErrosUltimaTentativa(idUsuario) {
+  const instrucao = `
+    SELECT 
+      QtdAcertos,
+      (10 - QtdAcertos) AS erros
+    FROM Resposta
+    WHERE FkUsuario = ${idUsuario}
+    ORDER BY Tentativa DESC
+    LIMIT 1;
+  `;
+  return database.executar(instrucao);
+}
+
+function obterPontuacoesPorTentativa(idUsuario) {
+    const instrucao = `
+        SELECT Tentativa, QtdAcertos AS Pontuacao
+        FROM Resposta
+        WHERE FkUsuario = ${idUsuario}
+        ORDER BY Tentativa DESC
+        LIMIT 5;
+    `;
+    console.log("Executando a instrução SQL: \n" + instrucao);
+    return database.executar(instrucao);
+}
+
 module.exports = {
     listar,
-    registrarQuiz
+    registrarQuiz,
+    buscarQtdTentativas,
+    buscarMaiorPontuacao,
+    buscarUltimaTentativa,
+    obterAcertosErrosUltimaTentativa,
+    obterTentativasEPontuacao,
+    obterPontuacoesPorTentativa
 };

@@ -16,20 +16,21 @@
   <div class="dashboard">
     <h2>Bem-vindo, Sobrevivente!</h2>
     <div class="KPIs">
-      <div class="CaixaKpi">
-        <h5>Média de Acertos</h5>
-      </div>
-      <div class="CaixaKpi">
-        <h5>Quizzes Jogados</h5>
-      </div>
-      <div class="CaixaKpi">
-        <h5>Melhor Pontuação</h5>
-      </div>
-      <div class="CaixaKpi">
-        <h5>Última Tentativa</h5>
-      </div>
-    </div>
+  <div class="CaixaKpi">
+    <h5>Quantidade de Tentativas</h5>
+    <span id="tentativasSpan"></span>
+  </div>
+  <div class="CaixaKpi">
+    <h5>Melhor Pontuação</h5>
+    <span id="pontuacaoSpan"></span>
+  </div>
+  <div class="CaixaKpi">
+    <h5>Última Tentativa</h5>
+    <span id="ultimaTentativaSpan"></span>
+  </div>
+</div>
 
+    </div>
     <div class="Graficos">
       <canvas id="graficoBarras"></canvas>
       <canvas id="graficoPizza"></canvas>
@@ -41,20 +42,85 @@
 </body>
 </html>
 <script>
-    function exibir() {
-        JSON.parse(sessionStorage.AQUARIOS).forEach(item => {
-            document.getElementById("cardAquarios").innerHTML += `
-                    <div class="card-aquario">
-                        <div class="title-aquario">
-                            <h1>${item.descricao}</h1>
-                        </div>
-                        <div class="desc-aquario">
-                        <div class="">
-                        </div>
-                        <div class="cor-alerta" id="card_${item.id}"></div>
-                    </div>
-                    </div>
-                    `
+function exibir() {
+  const idUsuario = sessionStorage.getItem('ID_USUARIO');
+
+  if (!idUsuario) {
+    alert("Usuário não logado!");
+    window.location.href = "index.html";
+    return;
+  }
+
+  fetch(`/dashboard/tentativas/${idUsuario}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("tentativasSpan").innerText = data.tentativas;
+    });
+
+  fetch(`/dashboard/pontuacao/${idUsuario}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("pontuacaoSpan").innerText = data.maiorPontuacao;
+    });
+
+  fetch(`/dashboard/ultima/${idUsuario}`)
+    .then(res => res.json())
+    .then(data => {
+      document.getElementById("ultimaTentativaSpan").innerText = data.ultimaTentativa;
+    });
+
+
+fetch(`/dashboard/tentativas/${idUsuario}`)
+  .then(res => res.json())
+  .then(data => {
+    document.getElementById("tentativasSpan").innerText = data.tentativas;
+
+    fetch(`/dashboard/pontuacao/${idUsuario}`)
+      .then(res => res.json())
+      .then(pontuacaoData => {
+        document.getElementById("pontuacaoSpan").innerText = pontuacaoData.maiorPontuacao;
+
+        const ctxBarra = document.getElementById('graficoBarras').getContext('2d');
+        new Chart(ctxBarra, {
+          type: 'bar',
+          data: {
+            labels: ['Tentativas', 'Melhor Pontuação'],
+            datasets: [{
+              label: 'Desempenho',
+              backgroundColor: ['#3498db', '#2ecc71'],
+              data: [data.tentativas, pontuacaoData.maiorPontuacao]
+            }]
+          },
+          options: {
+            responsive: true,
+            scales: {
+              y: {
+                beginAtZero: true
+              }
+            }
+          }
         });
-    }
+      });
+  });
+
+
+ fetch(`/dashboard/graficoPizza/${idUsuario}`)
+  .then(res => res.json())
+  .then(data => {
+    const ctxPizza = document.getElementById('graficoPizza').getContext('2d');
+    const graficoPizza = new Chart(ctxPizza, {
+      type: 'pie',
+      data: {
+        labels: ['Acertos', 'Erros'],
+        datasets: [{
+          label: 'Última Tentativa',
+          data: [data.acertos, data.erros],
+          backgroundColor: ['#2ecc71', '#e74c3c']
+        }]
+      }
+    });
+  });
+
+}
+
 </script>

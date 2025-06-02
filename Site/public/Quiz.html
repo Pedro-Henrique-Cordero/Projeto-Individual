@@ -6,7 +6,7 @@
     <title>Quiz Ark</title>
     <link rel="stylesheet" href="./Css/Quiz.css">
 </head>
-<body>
+<body onload="exibir()">
 </body>
 <div class="CaixaQuiz">
   <h1>Quiz de Sobrevivência</h1>
@@ -25,6 +25,16 @@
 </body>
 </html>
 <script>
+  function exibir() {
+    const idUsuario = sessionStorage.getItem('ID_USUARIO');
+
+  if (!idUsuario) {
+    alert("Usuário não logado!");
+    window.location.href = "index.html";
+    return;
+  }
+  }
+
   var PgtAtual = 0;
   var pontuacao = 0;
   var perguntas = [
@@ -101,7 +111,7 @@
         html += "<label><input type='radio' name='resposta' value='" + letra + "'> " + q.alternativas[i] + "</label><br>";
       }
 
-      html += "<button onclick='verificarResposta()'>Próxima</button>";
+      html += "<br><button onclick='verificarResposta()'>Próxima</button>";
       PgtQuiz.innerHTML = html;
     } else {
       finalizarQuiz();
