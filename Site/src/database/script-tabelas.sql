@@ -1,3 +1,7 @@
+-- Passo a passo para criar o usuario 
+
+
+-- Tabelas e inserts para funcionar
 create database arksurvival;
 
 use arksurvival;

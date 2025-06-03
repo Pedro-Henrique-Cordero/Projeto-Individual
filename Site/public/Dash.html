@@ -60,19 +60,14 @@ function exibir() {
   fetch(`/dashboard/pontuacao/${idUsuario}`)
     .then(res => res.json())
     .then(data => {
-      document.getElementById("pontuacaoSpan").innerText = data.maiorPontuacao;
+      document.getElementById("pontuacaoSpan").innerText = data.maiorpontuacao;
     });
 
 
   fetch(`/dashboard/ultima/${idUsuario}`)
     .then(res => res.json())
     .then(data => {
-     /* var dtAno = data.ultimaTentativa.slice(0,3);
-      var dtMes = data.ultimaTentativa.slice(5,6);
-      var dtDia = data.ultimaTentativa.slice(8,9);
-      var dtHora = data.ultimaTentativa.slice(11,18);
-      var dtTratada = `${dtDia} ${dtMes} ${dtAno} ${dtHora}`;*/
-      document.getElementById("ultimaTentativaSpan").innerText = data.ultimaTentativa;
+      document.getElementById("ultimaTentativaSpan").innerText = data.ultimatentativa;
     });
 
 
@@ -84,7 +79,7 @@ fetch(`/dashboard/tentativas/${idUsuario}`)
     fetch(`/dashboard/pontuacao/${idUsuario}`)
       .then(res => res.json())
       .then(pontuacaoData => {
-        document.getElementById("pontuacaoSpan").innerText = pontuacaoData.maiorPontuacao;
+        document.getElementById("pontuacaoSpan").innerText = pontuacaoData.maiorpontuacao;
 
         const ctxBarra = document.getElementById('graficoBarras').getContext('2d');
         new Chart(ctxBarra, {
@@ -94,7 +89,7 @@ fetch(`/dashboard/tentativas/${idUsuario}`)
             datasets: [{
               label: 'Desempenho',
               backgroundColor: ['#3498db', '#2ecc71'],
-              data: [data.tentativas, pontuacaoData.maiorPontuacao]
+              data: [data.tentativas, pontuacaoData.maiorpontuacao]
             }]
           },
           options: {

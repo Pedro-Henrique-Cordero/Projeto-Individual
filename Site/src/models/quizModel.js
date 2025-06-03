@@ -83,6 +83,7 @@ function obterPontuacoesPorTentativa(idUsuario) {
     return database.executar(instrucao);
 }
 
+
 module.exports = {
     listar,
     registrarQuiz,

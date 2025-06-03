@@ -75,7 +75,7 @@ function obterAcertosErrosUltimaTentativa(req, res) {
     .then(resultado => {
       if (resultado.length > 0) {
         res.json({
-          acertos: resultado[0].QtdAcertos,
+          acertos: resultado[0].qtdacertos,
           erros: resultado[0].erros
         });
       } else {
