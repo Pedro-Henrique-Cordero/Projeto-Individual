@@ -32,7 +32,7 @@
 
     </div>
     <div class="Graficos">
-      <canvas id="graficoBarras"></canvas>
+      <canvas id="graficoLinha"></canvas>
       <canvas id="graficoPizza"></canvas>
     </div>
 
@@ -71,38 +71,48 @@ function exibir() {
     });
 
 
-fetch(`/dashboard/tentativas/${idUsuario}`)
-  .then(res => res.json())
-  .then(data => {
-    document.getElementById("tentativasSpan").innerText = data.tentativas;
+ fetch(`/dashboard/pontuacoes/${idUsuario}`)
+    .then(res => res.json())
+    .then(data => {
+      const tentativas = data.map(item => "tentativa " + item.tentativa);
+      const acertos = data.map(item => item.pontuacao);
 
-    fetch(`/dashboard/pontuacao/${idUsuario}`)
-      .then(res => res.json())
-      .then(pontuacaoData => {
-        document.getElementById("pontuacaoSpan").innerText = pontuacaoData.maiorpontuacao;
-
-        const ctxBarra = document.getElementById('graficoBarras').getContext('2d');
-        new Chart(ctxBarra, {
-          type: 'bar',
-          data: {
-            labels: ['Tentativas', 'Melhor Pontuação'],
-            datasets: [{
-              label: 'Desempenho',
-              backgroundColor: ['#3498db', '#2ecc71'],
-              data: [data.tentativas, pontuacaoData.maiorpontuacao]
-            }]
-          },
-          options: {
-            responsive: true,
-            scales: {
-              y: {
-                beginAtZero: true
+      const ctxlinha = document.getElementById('graficoLinha').getContext('2d');
+      new Chart(ctxlinha, {
+        type: 'line',
+        data: {
+          labels: tentativas.reverse(),
+          datasets: [{
+            label: 'acertos por tentativa',
+            data: acertos.reverse(),
+            borderColor: '#3498db',
+            backgroundColor: 'rgba(52, 152, 219, 0.2)',
+            fill: true,
+            tension: 0.3,
+            pointRadius: 5,
+            pointBackgroundColor: '#2980b9'
+          }]
+        },
+        options: {
+          responsive: true,
+          scales: {
+            y: {
+              beginAtZero: true,
+              title: {
+                display: true,
+                text: 'acertos'
+              }
+            },
+            x: {
+              title: {
+                display: true,
+                text: 'tentativas'
               }
             }
           }
-        });
+        }
       });
-  });
+    });
 
 
  fetch(`/dashboard/graficoPizza/${idUsuario}`)

@@ -10,14 +10,23 @@ function listar() {
 }
 
 function registrarQuiz(fkusuario, Pontuacao) {
-    console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrar(): ", fkusuario, Pontuacao);
-
-    var instrucao = `
-        insert into resposta (fkusuario, fkquiz, qtdacertos )
-        values (${fkusuario}, 1, ${Pontuacao});
+    const obterUltimaTentativa = `
+        SELECT MAX(tentativa) AS ultima FROM resposta WHERE fkusuario = ${fkusuario};
     `;
-    console.log("Executando a instrução SQL: \n" + instrucao);
-    return database.executar(instrucao);
+
+    return database.executar(obterUltimaTentativa)
+        .then(res => {
+            let novaTentativa = 1;
+            if (res.length > 0 && res[0].ultima !== null) {
+                novaTentativa = res[0].ultima + 1;
+            }
+
+            const insertResposta = `
+                INSERT INTO resposta (fkusuario, fkquiz, qtdacertos, tentativa)
+                VALUES (${fkusuario}, 1, ${Pontuacao}, ${novaTentativa});
+            `;
+            return database.executar(insertResposta);
+        });
 }
 
 function buscarQtdTentativas(idUsuario) {

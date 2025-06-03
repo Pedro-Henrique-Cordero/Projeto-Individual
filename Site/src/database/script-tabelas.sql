@@ -1,6 +1,12 @@
 -- Passo a passo para criar o usuario 
 
-
+1 mysql -u root -p;
+2 create user 'pedro'@'%' identified by 'Sptech#2024';
+3 grant all privileges on *.* to 'pedro'@'%';
+4 flush privileges;
+5 exit 
+6 mysql -u pedro -p
+7 fazer as Tabelas
 -- Tabelas e inserts para funcionar
 create database arksurvival;
 
