@@ -3,7 +3,7 @@ var database = require("../database/config")
 function listar() {
     console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function listar()");
     var instrucao = `
-        SELECT * FROM Respostas;
+        select * from resposta;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -13,8 +13,8 @@ function registrarQuiz(fkusuario, Pontuacao) {
     console.log("ACESSEI O QUIZ MODEL \n \n\t\t >> Se aqui der erro de 'Error: connect ECONNREFUSED',\n \t\t >> verifique suas credenciais de acesso ao banco\n \t\t >> e se o servidor de seu BD está rodando corretamente. \n\n function registrar(): ", fkusuario, Pontuacao);
 
     var instrucao = `
-        INSERT INTO Resposta (FkUsuario, FkQuiz, QtdAcertos )
-        VALUES (${fkusuario}, 1, ${Pontuacao});
+        insert into resposta (fkusuario, fkquiz, qtdacertos )
+        values (${fkusuario}, 1, ${Pontuacao});
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
@@ -22,62 +22,62 @@ function registrarQuiz(fkusuario, Pontuacao) {
 
 function buscarQtdTentativas(idUsuario) {
     var instrucao = `
-        SELECT COUNT(*) AS tentativas 
-        FROM Resposta 
-        WHERE FkUsuario = ${idUsuario};
+        select count(*) as tentativas 
+        from resposta 
+        where fkusuario = ${idUsuario};
     `;
     return database.executar(instrucao);
 }
 
 function buscarMaiorPontuacao(idUsuario) {
     var instrucao = `
-        SELECT MAX(QtdAcertos) AS maiorPontuacao 
-        FROM Resposta 
-        WHERE FkUsuario = ${idUsuario};
+        select max(qtdacertos) as maiorpontuacao 
+        from resposta 
+        where fkusuario = ${idUsuario};
     `;
     return database.executar(instrucao);
 }
 
 function obterTentativasEPontuacao(idUsuario) {
   const instrucao = `
-    SELECT 
-      COUNT(*) AS tentativas,
-      MAX(QtdAcertos) AS maiorPontuacao
-    FROM Resposta
-    WHERE FkUsuario = ${idUsuario};
+    select 
+      count(*) as tentativas,
+      max(qtdacertos) as maiorpontuacao
+    from resposta
+    where fkusuario = ${idUsuario};
   `;
   return database.executar(instrucao);
 }
 
 function buscarUltimaTentativa(idUsuario) {
     var instrucao = `
-        SELECT MAX(date_format(DtResposta, '%d/%m/%y')) AS ultimaTentativa 
-        FROM Resposta 
-        WHERE FkUsuario = ${idUsuario};
+        select max(date_format(dtresposta, '%d/%m/%y')) as ultimatentativa 
+        from resposta 
+        where fkusuario = ${idUsuario};
     `;
     return database.executar(instrucao);
 }
 
 function obterAcertosErrosUltimaTentativa(idUsuario) {
   const instrucao = `
-    SELECT 
-      QtdAcertos,
-      (10 - QtdAcertos) AS erros
-    FROM Resposta
-    WHERE FkUsuario = ${idUsuario}
-    ORDER BY Tentativa DESC
-    LIMIT 1;
+    select 
+      qtdacertos,
+      (10 - qtdacertos) as erros
+    from resposta
+    where fkusuario = ${idUsuario}
+    order by tentativa desc
+    limit 1;
   `;
   return database.executar(instrucao);
 }
 
 function obterPontuacoesPorTentativa(idUsuario) {
     const instrucao = `
-        SELECT Tentativa, QtdAcertos AS Pontuacao
-        FROM Resposta
-        WHERE FkUsuario = ${idUsuario}
-        ORDER BY Tentativa DESC
-        LIMIT 5;
+        select tentativa, qtdacertos as pontuacao
+        from resposta
+        where fkusuario = ${idUsuario}
+        order by tentativa desc
+        limit 5;
     `;
     console.log("Executando a instrução SQL: \n" + instrucao);
     return database.executar(instrucao);
