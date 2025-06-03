@@ -51,7 +51,7 @@ function obterTentativasEPontuacao(idUsuario) {
 
 function buscarUltimaTentativa(idUsuario) {
     var instrucao = `
-        SELECT DtResposta AS ultimaTentativa 
+        SELECT MAX(date_format(DtResposta, '%d/%m/%y')) AS ultimaTentativa 
         FROM Resposta 
         WHERE FkUsuario = ${idUsuario};
     `;
